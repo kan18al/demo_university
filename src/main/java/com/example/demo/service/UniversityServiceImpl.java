@@ -26,7 +26,7 @@ public class UniversityServiceImpl implements UniversityService, CommandLineRunn
     private static final Map<Integer, Audience> AUDIENCE_REPOSITORY_MAP = new HashMap<>();
 
     @Override
-    public void create(Student student) {
+    public void createStudent(Student student) {
         final int studentId = generateUniqueId();
         student.setId(studentId);
         studentRepo.save(student);
@@ -35,7 +35,7 @@ public class UniversityServiceImpl implements UniversityService, CommandLineRunn
     }
 
     @Override
-    public void create(Lesson lesson) {
+    public void createLesson(Lesson lesson) {
         final int lessonId = generateUniqueId();
         lesson.setId(lessonId);
         lessonRepo.save(lesson);
@@ -44,17 +44,17 @@ public class UniversityServiceImpl implements UniversityService, CommandLineRunn
     }
 
     @Override
-    public List<Student> readAll() {
+    public List<Student> readAllStudent() {
         return new ArrayList<>(STUDENT_REPOSITORY_MAP.values());
     }
 
     @Override
-    public Student read(int id) {
+    public Student readStudent(int id) {
         return STUDENT_REPOSITORY_MAP.get(id);
     }
 
     @Override
-    public boolean update(Student student, int id) {
+    public boolean updateStudent(Student student, int id) {
         if (STUDENT_REPOSITORY_MAP.containsKey(id)) {
             List<Lesson> lessons = new ArrayList<>();
             student.setId(id);
@@ -70,7 +70,7 @@ public class UniversityServiceImpl implements UniversityService, CommandLineRunn
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean deleteStudent(int id) {
         studentRepo.delete(STUDENT_REPOSITORY_MAP.get(id));
         fetchData();
         return STUDENT_REPOSITORY_MAP.remove(id) != null;

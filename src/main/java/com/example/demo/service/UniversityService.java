@@ -13,21 +13,21 @@ public interface UniversityService {
      * Создает нового студента
      * @param student - студент для создания
      */
-    void create(Student student);
-    void create(Lesson lesson);
+    void createStudent(Student student);
+    void createLesson(Lesson lesson);
 
     /**
      * Возвращает список всех имеющихся студентов
      * @return список студентов
      */
-    List<Student> readAll();
+    List<Student> readAllStudent();
 
     /**
      * Возвращает студента по его ID
      * @param id - ID студента
      * @return - объект студента с заданным ID
      */
-    Student read(int id);
+    Student readStudent(int id);
 
     /**
      * Обновляет студента с заданным ID,
@@ -36,14 +36,14 @@ public interface UniversityService {
      * @param id - id студента которого нужно обновить
      * @return - true если данные были обновлены, иначе false
      */
-    boolean update(Student student, int id);
+    boolean updateStudent(Student student, int id);
 
     /**
      * Удаляет клиента с заданным ID
      * @param id - id студента, которого нужно удалить
      * @return - true если студент был удален, иначе false
      */
-    boolean delete(int id);
+    boolean deleteStudent(int id);
 
     /**
      * Возвращает список всех имеющихся аудиторий

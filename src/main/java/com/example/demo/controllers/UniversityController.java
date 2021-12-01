@@ -22,7 +22,7 @@ public class UniversityController {
 
     @GetMapping(value = "/students")
     public ResponseEntity<List<Student>> read() {
-        final List<Student> students = universityService.readAll();
+        final List<Student> students = universityService.readAllStudent();
 
         return students != null &&  !students.isEmpty()
                 ? new ResponseEntity<>(students, HttpStatus.OK)
@@ -31,7 +31,7 @@ public class UniversityController {
 
     @GetMapping(value = "/students/{id}")
     public ResponseEntity<Student> read(@PathVariable(name = "id") int id) {
-        final Student student = universityService.read(id);
+        final Student student = universityService.readStudent(id);
 
         return student != null
                 ? new ResponseEntity<>(student, HttpStatus.OK)
@@ -100,13 +100,13 @@ public class UniversityController {
 
     @PostMapping(value = "/students")
     public ResponseEntity<?> create(@RequestBody Student student) {
-        universityService.create(student);
+        universityService.createStudent(student);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/students/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody Student student) {
-        final boolean updated = universityService.update(student, id);
+        final boolean updated = universityService.updateStudent(student, id);
 
         return updated
                 ? new ResponseEntity<>(HttpStatus.OK)
@@ -115,7 +115,7 @@ public class UniversityController {
 
     @PostMapping(value = "/lessons")
     public ResponseEntity<?> createLesson(@RequestBody Lesson lesson) {
-        universityService.create(lesson);
+        universityService.createLesson(lesson);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -130,7 +130,7 @@ public class UniversityController {
 
     @DeleteMapping(value = "/students/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
-        final boolean deleted = universityService.delete(id);
+        final boolean deleted = universityService.deleteStudent(id);
 
         return deleted
                 ? new ResponseEntity<>(HttpStatus.OK)
